@@ -1,15 +1,12 @@
-all:
-
-clone:
-	git clone git@github.com:candi2002/OS.git
+all: commit push
 
 add:
 	git add .
 
-commit:
+commit: add
 	git commit -m "Update project"
 
-push:
+push: commit
 	git push origin main
 
 pull:
