@@ -6,7 +6,7 @@ add:
 commit: add
 	git commit -m "Update project"
 
-push: commit
+push:
 	git push origin main
 
 pull:
