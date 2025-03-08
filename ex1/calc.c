@@ -2,18 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "calc.h"
+#include "operations.h"
 
 #define MAX_INPUT 50
 
 void clear_screen() {
     printf("\033[H\033[J");
 }
-
-double add(double a, double b) { return a + b; }
-double subtract(double a, double b) { return a - b; }
-double multiply(double a, double b) { return a * b; }
-double divide(double a, double b) { return a / b; }
-int modulo(int a, int b) { return a % b; }
 
 int main() {
     char input[MAX_INPUT];
@@ -74,4 +70,3 @@ int main() {
     
     return 0;
 }
-
