@@ -5,6 +5,9 @@
 #include "calc.h"
 #include "operations.h"
 
+
+
+
 #define MAX_INPUT 50
 
 void clear_screen() {
