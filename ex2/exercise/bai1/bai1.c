@@ -15,10 +15,10 @@ void calculate_average(const char* filename, char* shared_data){
         exit(EXIT_FAILURE);
     }
 
-    int movie_id, use_id, rating, timeStamp;
+    int movie_id, user_id, rating, timeStamp;
     int total_rating = 0, count = 0;
 
-    while (fscanf(file, "%d\t%d\t%d\t%d", &user_id, &movie_id, &rating, &timestamp) != EOF"){
+    while (fscanf(file, "%d\t%d\t%d\t%d", &user_id, &movie_id, &rating, &timeStamp) != EOF) {
         count++;
         total_rating += rating;
     }
@@ -27,18 +27,19 @@ void calculate_average(const char* filename, char* shared_data){
     double average = (double)total_rating/count;
     sprintf(shared_data, "File: %s, Average Rating: %.2f", filename, average);
 }
+
 int main() {
     key_t key = ftok("share_memory", 65);
-    int shmid = shmget(key, 1024, 0666|IPC_CREATE);
+    int shmid = shmget(key, 1024, 0666|IPC_CREAT);
     char *shared_data = (char*) shmat(shmid, (void*)0,0);
 
     if(fork()==0){
         //Child 1
-        calculate_average(FILE1,shared_data);
+        calculate_average(FILE1, shared_data);
     }
     else if(fork() == 0){
-        //child 2
-        char*child_data = shared_data + 512;
+        //Child 2
+        char* child_data = shared_data + 512;
         calculate_average(FILE2, child_data);
     }
     else{
