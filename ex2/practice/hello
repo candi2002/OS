@@ -1,8 +1,0 @@
-#include <s t d i o . h>
-int main ( int argc , char∗ argv [ ] )
-{
-p r i n t f ( ” H ell o world \n” ) ;
-g e t c ( s t di n ) ;
-return 0 ;
-}
-
