@@ -56,9 +56,10 @@ int main() {
         printf("Count: %d, Total Rating: %d\n", result[0], result[1]);
         printf("%s\n", shared_data + 512);
         printf("Count: %d, Total Rating: %d\n", result[2], result[3]);
-        printf("Both files, Average Rating: %d + %d, %d + %d = %.2f\n", 
-        result[0], result[1], result[2], result[3], 
+        printf("Both files, Average Rating: (%d + %d) / (%d + %d) = %.2f\n", 
+        result[1], result[3], result[0], result[2], 
         ((double)(result[1] + result[3])) / (result[0] + result[2]));
+
 
 
     }
