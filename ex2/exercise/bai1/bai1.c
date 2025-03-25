@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/shm.h>
 #include <sys/ipc.h>
+#include <sys/wait.h>
 #include <string.h>
 
 #define FILE1 "movie-100k_1.txt"
