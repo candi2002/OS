@@ -1,22 +1,31 @@
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include<stdio.h>
 
-/* Thread function: worker */
-void *worker(void *arg) {
-printf("Worker thread executing: PID: %d!\n", getpid());
-return NULL;
-}
+#include<unistd.h>
 
-int main() {
-pthread_t thread1, thread2;
- 
-pthread_create(&thread1, NULL, worker, NULL);// Create thread1 thread
-pthread_create(&thread2, NULL, worker, NULL);
-pthread_join(thread1, NULL);// Wait for thread1 to complete
-pthread_join(thread2, NULL);// Wait for thread2 to complete
+int main(){
 
-printf("Main thread executing!\n");
-return 0;
+  int x=0, y=4;
+
+  int pid=fork();
+
+  if(pid==0){
+
+    x+=y;
+
+    printf("Child process: %d; ",x);
+
+    return 0;
+
+  }
+
+  else if(pid>0){
+
+    x+=y*2;
+
+    printf("Parent process: %d; ",x);
+
+  }
+
+  return 0;
+
 }
