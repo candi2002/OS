@@ -1,17 +1,22 @@
 #include <pthread.h>
-#include <unistd.h>
 #include <stdio.h>
-void* worker(void *param){
-printf("Thread function is called! \n");
-return 0;
+#include <stdlib.h>
+#include <unistd.h>
+
+/* Thread function: worker */
+void *worker(void *arg) {
+printf("Worker thread executing: PID: %d!\n", getpid());
+return NULL;
 }
+
 int main() {
-pthread_t tid1, tid2;
-fork(); fork();
-pthread_create(&tid1, NULL, worker, NULL);
-pthread_create(&tid2, NULL, worker, NULL);
-pthread_join(tid1, NULL);
-pthread_join(tid2, NULL);
+pthread_t thread1, thread2;
  
+pthread_create(&thread1, NULL, worker, NULL);// Create thread1 thread
+pthread_create(&thread2, NULL, worker, NULL);
+pthread_join(thread1, NULL);// Wait for thread1 to complete
+pthread_join(thread2, NULL);// Wait for thread2 to complete
+
+printf("Main thread executing!\n");
 return 0;
 }
