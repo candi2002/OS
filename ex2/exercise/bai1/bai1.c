@@ -28,8 +28,30 @@ void calculate_average(const char* filename, char* shared_data){
     sprintf(shared_data, "File: %s, Average Rating: %.2f", filename, average);
 }
 int main() {
-    key_t key = ftok("share_memory", 15);
+    key_t key = ftok("share_memory", 65);
     int shmid = shmget(key, 1024, 0666|IPC_CREATE);
-    char *share_data = (char*) shmat(shmid, (void*)0,0);
-    
+    char *shared_data = (char*) shmat(shmid, (void*)0,0);
+
+    if(fork()==0){
+        //Child 1
+        calculate_average(FILE1,shared_data);
+    }
+    else if(fork() == 0){
+        //child 2
+        char*child_data = shared_data + 512;
+        calculate_average(FILE2, child_data);
+    }
+    else{
+        //Parent
+        wait(NULL);
+        wait(NULL);
+        printf("Parent reading shared memory:\n");
+        printf("%s\n", shared_data);
+        printf("%s\n", shared_data + 512);
+    }
+
+    // Detach and destroy shared memory
+    shmdt(shared_data);
+    shmctl(shmid, IPC_RMID, NULL);
+    return 0;
 }
