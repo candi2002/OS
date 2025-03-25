@@ -53,12 +53,13 @@ int main() {
         wait(NULL);
         printf("Parent reading shared memory:\n");
         printf("%s\n", shared_data);
-        printf("Count: %d, Total Rating: %d\n", int_data[0], int_data[1]);
+        printf("Count: %d, Total Rating: %d\n", result[0], result[1]);
         printf("%s\n", shared_data + 512);
-        printf("Count: %d, Total Rating: %d\n", int_data[2], int_data[3]);
-        printf("Both files, Average Rating:  %d + %d \: %d + %d = %.2f\n", 
+        printf("Count: %d, Total Rating: %d\n", result[2], result[3]);
+        printf("Both files, Average Rating: %d + %d, %d + %d = %.2f\n", 
         result[0], result[1], result[2], result[3], 
         ((double)(result[1] + result[3])) / (result[0] + result[2]));
+
 
     }
 
