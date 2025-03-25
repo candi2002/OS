@@ -18,7 +18,7 @@ void calculate_average(const char* filename, char* shared_data){
     int movie_id, use_id, rating, timeStamp;
     int total_rating = 0, count = 0;
 
-    while (fscanf(file, ""%d\t%d\t%d\t%d", &user_id, &movie_id, &rating, &timestamp) != EOF"){
+    while (fscanf(file, "%d\t%d\t%d\t%d", &user_id, &movie_id, &rating, &timestamp) != EOF"){
         count++;
         total_rating += rating;
     }
